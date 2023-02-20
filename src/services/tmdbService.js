@@ -3,7 +3,9 @@ import {urls} from "../configs";
 
 const tmdbService = {
     getAllMoviesByPage: (page) => apiServiceMovies.get(urls.allMovies.byPage(page)),
-    getAllGenre:() => apiServiceMovies.get(urls.allGenre.genre)
+    getMoviesByGenre: (page, genre) => apiServiceMovies.get(urls.allMovies.byGenres(page, genre)),
+    getMovieByIdSrv: (movieId) => apiServiceMovies.get(urls.oneMovie.movie(movieId)),
+    getAllGenre:() => apiServiceMovies.get(urls.allGenre.genre),
 }
 
 export {

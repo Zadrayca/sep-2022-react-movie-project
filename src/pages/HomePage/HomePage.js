@@ -1,22 +1,21 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useSearchParams} from "react-router-dom";
 
 import css from './HomePage.module.css';
 import {moviesActions} from "../../redux";
 import {MoviesBox, PagesButton} from "../../components";
-import {useLocation, useSearchParams} from "react-router-dom";
 
 const HomePage = () => {
 
-    const {movies, page, loading, genres} = useSelector(state => state.movies);
+    const {page} = useSelector(state => state.movies);
 
     const dispatch = useDispatch();
 
-    const [query, setQuery] = useSearchParams({page: `1`});
-
+    const [query] = useSearchParams();
 
     useEffect(() => {
-        dispatch(moviesActions.getAllMovies({page}))
+        dispatch(moviesActions.getAllMovies({page :query.get('page')}))
     }, [dispatch, page, query]);
 
     return (

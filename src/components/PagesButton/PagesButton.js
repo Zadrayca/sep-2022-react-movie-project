@@ -2,8 +2,6 @@ import {useSelector} from "react-redux";
 
 import css from './PagesButton.module.css';
 import {useMyPage} from "../hooks/useMyPage";
-import {useSearchParams} from "react-router-dom";
-import {useQueryPage} from "../hooks/useQueryPage";
 
 const PagesButton = () => {
 

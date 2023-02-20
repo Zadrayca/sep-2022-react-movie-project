@@ -1,19 +1,15 @@
-.moviesCard{
-
-}
-
-.container {
+.moviesCard {
     position: relative;
 }
 
 .overlay {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: -200px;
+    width: 200px;
     height: 100%;
     /* Наложение цвета */
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: aliceblue;
 }
 
 /*Здесь мы создаем контейнер .container, внутри которого находится изображение <img> и див .overlay.

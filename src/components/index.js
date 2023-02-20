@@ -6,3 +6,4 @@ export * from './MoviesBox/MoviesBox';
 export * from './MoviesCard/MoviesCard';
 export * from './PagesButton/PagesButton';
 export * from './hooks/useMyPage';
+export * from './MovieInfo/MovieInfo';
