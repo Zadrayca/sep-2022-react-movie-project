@@ -1,6 +1,14 @@
 .main {
     display: flex;
     flex-direction: column;
+    width: 80%;
     gap: 15px;
     margin: 15px;
+}
+
+.mainBox {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
 }

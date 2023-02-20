@@ -1,9 +1,19 @@
+import {Route, Routes} from "react-router-dom";
+
 import './App.css';
-import {TestAPI} from "./components/TestApi/TestAPI";
+import {MainLayout} from "./layouts";
+import {HomePage, NotFoundPage, TestPage} from "./pages";
 
 const App = () => (
     <div className="App">
-        <TestAPI/>
+        <Routes>
+            <Route path={''} element={<MainLayout/>}>
+                <Route index element={<HomePage/>}/>
+                <Route path={'test'} element={<TestPage/>}/>
+
+                <Route path={'*'} element={<NotFoundPage/>}/>
+            </Route>
+        </Routes>
 
     </div>
 );

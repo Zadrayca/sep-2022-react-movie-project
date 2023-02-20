@@ -1,23 +1,46 @@
-import React, {useEffect, useState} from 'react';
-import {urls} from "../../configs";
-import {apiService} from "../../services/apiServices";
+import React, {useEffect} from 'react';
+
+import css from './TestApi.module.css';
+import {imagesUrl} from "../../configs";
+import {useDispatch, useSelector} from "react-redux";
+import {moviesActions} from "../../redux";
 
 const TestAPI = () => {
 
-    const [state, setState] = useState(null);
-    const [page, setPage] = useState(1);
+    const {movies, page, loading, genres} = useSelector(state => state.movies);
 
+    const dispatch = useDispatch();
+    const nextPage = () => dispatch(moviesActions.setPage(page + 1));
 
     useEffect(() => {
-        apiService.get(`/discover/movie?page=${page}`).then(({data}) => setState(data))
-    }, [page]);
+        dispatch(moviesActions.getAllMovies({page}))
+    }, [dispatch, page]);
 
-    console.log(state);
+    // useEffect(() => {
+    //     dispatch(moviesActions.getAllGenre())
+    // }, [dispatch]);
+
+    // console.log(state);
+    console.log(movies);
+    console.log(page);
+    console.log(genres);
+
+
+
 
     return (
-        <div>
-            <button onClick={()=> setPage(page + 1)}>page</button>
-            {state && state.results.map(stat => <div key={stat.id}>{stat.title}</div>)}
+        <div className={css.test}>
+            <button onClick={nextPage}>page</button>
+            {loading ?
+                <div>loading.....................</div> :
+                <div>
+                    {movies.map(movie => <div key={movie.id}>{movie.title}</div>)}
+                    {movies && movies.map(movie => <img key={movie.id} alt={'backdrop'} src={`${imagesUrl}/w500${movie.poster_path}`}/>)}
+                </div>}
+
+            {/*{genres && genres.map(movie => <div key={movie.id}>{movie.name}</div>)}*/}
+            {/*{state && state.results.map(stat => <img key={stat.id} alt={'backdrop'} src={`${imagesUrl}/w500${stat.backdrop_path}`}/>)}*/}
+
 
         </div>
     );
