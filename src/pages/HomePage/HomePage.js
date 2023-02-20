@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import css from './HomePage.module.css';
 import {moviesActions} from "../../redux";
 import {MoviesBox, PagesButton} from "../../components";
+import {useLocation, useSearchParams} from "react-router-dom";
 
 const HomePage = () => {
 
@@ -11,10 +12,12 @@ const HomePage = () => {
 
     const dispatch = useDispatch();
 
+    const [query, setQuery] = useSearchParams({page: `1`});
+
 
     useEffect(() => {
         dispatch(moviesActions.getAllMovies({page}))
-    }, [dispatch, page]);
+    }, [dispatch, page, query]);
 
     return (
         <div className={css.homePage}>
