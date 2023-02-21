@@ -1,24 +1,21 @@
 import {useSelector} from "react-redux";
-// import {moviesActions} from "../../redux";
 import {useSearchParams} from "react-router-dom";
 
 const useMyPage = () => {
-    const {page} = useSelector(state => state.movies);
-    const [query, setQuery] = useSearchParams({page: '1'});
+    const {page, queryMovie, genreChoice} = useSelector(state => state.movies);
+    const [, setQuery] = useSearchParams({page: '1'});
 
     const nextPage = () => {
-        // dispatch(moviesActions.setPage(page + 1))
-        setQuery({ page: `${page + 1}` });
+        setQuery({ page: `${page + 1}`, query: `${queryMovie}`, genre:`${genreChoice.name}`});
     };
+
     const previousPage = () => {
-        // dispatch(moviesActions.setPage(page - 1))
-        setQuery({ page: `${page - 1}` });
+        setQuery({ page: `${page - 1}`, query: `${queryMovie}`, genre:`${genreChoice.name}`});
     };
 
     return {
         nextPage,
-        previousPage,
-        // firstPage
+        previousPage
     }
 };
 

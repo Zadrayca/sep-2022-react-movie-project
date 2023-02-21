@@ -1,3 +1,8 @@
+.headerBox {
+    display: flex;
+    flex-direction: column;
+}
+
 .header {
     min-height: 50px;
     background-color: #2e61b2;
@@ -10,9 +15,18 @@
 .header a{
     text-decoration: none;
     color: snow;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .header a[class='active'] {
     color: #c51d3d;
+}
+
+.header2 {
+    min-height: 50px;
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }

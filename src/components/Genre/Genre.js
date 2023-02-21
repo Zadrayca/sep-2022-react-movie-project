@@ -1,21 +1,27 @@
+import {useDispatch} from "react-redux";
+import {useNavigate, useSearchParams} from "react-router-dom";
+
 import css from './Genre.module.css';
-import {useDispatch, useSelector} from "react-redux";
 import {moviesActions} from "../../redux";
-import {NavLink, redirect} from "react-router-dom";
 
 const Genre = ({genre}) => {
 
     const dispatch = useDispatch();
 
-    const activeGenre = ()=> {
+    const navigate = useNavigate();
+
+    const [,setQuery] = useSearchParams({page: '1', genre: `${genre.name}`});
+
+    const activeGenre = () => {
         dispatch(moviesActions.setGenreChoice(genre))
+        dispatch(moviesActions.setQuery(''))
+        setQuery({page: '1', genre: `${genre.name}`});
+        navigate(`/?page=1&genre=${genre.name}`);
     };
 
     return (
         <div className={css.genre}>
-            <NavLink to={'genre'}> <button onClick={activeGenre}>{genre.name}</button></NavLink>
-            {/*<button onClick={activeGenre}>{genre.name}</button>*/}
-
+            <button onClick={activeGenre}>{genre.name}</button>
         </div>
     );
 };

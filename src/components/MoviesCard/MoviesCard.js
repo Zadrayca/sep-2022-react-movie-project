@@ -15,6 +15,8 @@ const MoviesCard = ({movie}) => {
 
     const [showPopup, setShowPopup] = useState(false);
 
+    // /r7ZipEd9oHHVVXTcvbx3Sd3Tukv.jpg
+
     return (
         <div
             className={css.moviesCard}
@@ -22,10 +24,15 @@ const MoviesCard = ({movie}) => {
             onMouseLeave={() => setShowPopup(false)}
         >
             <NavLink to={'movie'}>
-                <img src={`${imagesUrl}/w185${movie.poster_path}`}
-                     alt={'Movie poster'}
-                     onClick={setMovieId}
-                />
+                {movie.poster_path?
+                    <img src={`${imagesUrl}/w185${movie.poster_path}`}
+                         alt={'Movie poster'}
+                         onClick={setMovieId}
+                    />:
+                    <img src={`${imagesUrl}/w185/r7ZipEd9oHHVVXTcvbx3Sd3Tukv.jpg`}
+                         alt={'Movie poster'}
+                         onClick={setMovieId}
+                    />}
             </NavLink>
             {showPopup && <div className={css.overlay}>
                 <div>{movie.original_title}</div>

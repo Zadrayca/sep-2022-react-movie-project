@@ -4,20 +4,22 @@ import {tmdbService} from "../../services";
 const initialState = {
     movies: [],
     page: 1,
+    sort: 'popularity.desc',
     errors: null,
-    loading: null,
+    loading: false,
     genres: [],
-    genreChoice: {id: null, name: null},
+    genreChoice: {id: null, name: ''},
     movieId: null,
-    movieInfo: null
+    movieInfo: null,
+    queryMovie: ''
 };
 
 const getAllMovies = createAsyncThunk(
     'moviesSlice/getAllMovies',
-    async ({page}, thunkAPI) => {
+    async ({page, sort}, thunkAPI) => {
         try {
             // await new Promise(resolve => setTimeout(() => resolve(), 1000));
-            const {data} = await tmdbService.getAllMoviesByPage(page);
+            const {data} = await tmdbService.getAllMoviesByPage(page, sort);
             return data
         } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
@@ -51,6 +53,19 @@ const getMovieById = createAsyncThunk(
     }
 );
 
+const getSearchMovieByQuery = createAsyncThunk(
+    'moviesSlice/getSearchMovieByQuery',
+    async ({page, query}, thunkAPI) => {
+        try {
+            // await new Promise(resolve => setTimeout(() => resolve(), 1000));
+            const {data} = await tmdbService.getSearchByQuery(page, query);
+            return data
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
 const getAllGenre = createAsyncThunk(
     'moviesSlice/getAllGenre',
     async (_, thunkAPI) => {
@@ -77,6 +92,9 @@ const moviesSlice = createSlice({
         }),
         setMovieId:((state, action) =>{
             state.movieId = action.payload
+        }),
+        setQuery:((state, action) =>{
+            state.queryMovie = action.payload
         })
     },
     extraReducers: builder =>
@@ -94,13 +112,19 @@ const moviesSlice = createSlice({
                 state.loading = false;
             })
             .addCase(getMovieById.fulfilled, (state, action) => {
-                // const {results, page} = action.payload;
-                // state.movie = results;
                 state.movieInfo = action.payload;
-                // state.page = page
+                state.loading = false;
+            })
+            .addCase(getSearchMovieByQuery.fulfilled, (state, action) => {
+                const {results, page} = action.payload;
+                state.movies = results;
+                state.page = page
                 state.loading = false;
             })
             .addCase(getAllMovies.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getSearchMovieByQuery.pending, (state) => {
                 state.loading = true;
             })
             .addCase(getMoviesGenre.pending, (state) => {
@@ -117,7 +141,7 @@ const moviesSlice = createSlice({
 
 const {
     reducer: moviesReducer,
-    actions: {setPage, setGenreChoice, setMovieId}
+    actions: {setPage, setGenreChoice, setMovieId, setQuery}
 } = moviesSlice;
 
 const moviesActions = {
@@ -127,7 +151,9 @@ const moviesActions = {
     setGenreChoice,
     getMoviesGenre,
     getMovieById,
-    setMovieId
+    setMovieId,
+    getSearchMovieByQuery,
+    setQuery
 }
 
 export {
