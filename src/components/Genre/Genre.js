@@ -1,8 +1,9 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
 
 import css from './Genre.module.css';
 import {moviesActions} from "../../redux";
+import {MyButton} from "../UI/MyButton/MyButton";
 
 const Genre = ({genre}) => {
 
@@ -10,18 +11,22 @@ const Genre = ({genre}) => {
 
     const navigate = useNavigate();
 
-    const [,setQuery] = useSearchParams({page: '1', genre: `${genre.name}`});
+    const {page, queryMovie, genreChoice, loading, sort} = useSelector(state => state.movies);
+
+
+    const [, setQuery] = useSearchParams({page: '1', genre: `${genre.id}`});
 
     const activeGenre = () => {
         dispatch(moviesActions.setGenreChoice(genre))
-        dispatch(moviesActions.setQuery(''))
-        setQuery({page: '1', genre: `${genre.name}`});
-        navigate(`/?page=1&genre=${genre.name}`);
+        // dispatch(moviesActions.setQuery(''))
+        // setQuery({page: '1', sort: `${sort}`, genre: `${genre.id}`, query: ''});
+        // setQuery({page: '1', sort: `${sort}`, genre: `${genre.id}`, query: ''});
+        navigate(`movies/?page=1&genre=${genre.id}`);
     };
 
     return (
         <div className={css.genre}>
-            <button onClick={activeGenre}>{genre.name}</button>
+            <MyButton onClick={activeGenre}>{genre.name}</MyButton>
         </div>
     );
 };

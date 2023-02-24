@@ -1,31 +1,24 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import css from './PagesButton.module.css';
-import {useMyPage} from "../hooks/useMyPage";
+import {moviesActions} from "../../redux";
+import {useSearchParams} from "react-router-dom";
+import {MyButton} from "../UI/MyButton/MyButton";
 
-const PagesButton = () => {
+// setPage
+const PagesButton = ({nextPage}) => {
 
-    const {page} = useSelector(state => state.movies);
-
-    const {nextPage, previousPage} = useMyPage();
-
-    // const [query, setQuery] = useSearchParams({page: '1'});
-
-    // const {nextPageQuery, prevPageQuery} = useQueryPage()
-
-    // const [query1, setQuery1] = useSearchParams({page:'1'});
-
-    // console.log(query.get('page'));
+    const {page, sort, genreChoice} = useSelector(state => state.movies);
 
     return (
         <div className={css.buttonDiv}>
-            {/*<button disabled={page === 1} onClick={prevPageQuery}>Previous page2</button>*/}
-            {/*<button disabled={page === 500} onClick={nextPageQuery}>Next page2</button>*/}
-            {/*<button onClick={()=> setQuery(query=> ({page:+query.get('page')-1}))}>Prev page</button>*/}
-            {/*<button onClick={()=> setQuery(query=> ({page:+query.get('page')+1}))}>Next page</button>*/}
-
-            <button disabled={page === 1} onClick={previousPage}>Previous page</button>
-            <button disabled={page === 500} onClick={nextPage}>Next page</button>
+            <MyButton disabled={page === 1} onClick={()=>nextPage(-1)}>Previous page</MyButton>
+            {page > 2 && <MyButton onClick={()=>nextPage(-2)}>{page - 2}</MyButton>}
+            {page > 1 && <MyButton onClick={()=>nextPage(-1)}>{page - 1}</MyButton>}
+            <MyButton onClick={()=>nextPage(0)}>{page}</MyButton>
+            <MyButton onClick={()=>nextPage(1)}>{page + 1}</MyButton>
+            <MyButton onClick={()=>nextPage(2)}>{page + 2}</MyButton>
+            <MyButton disabled={page === 500} onClick={()=>nextPage(1)}>Next page</MyButton>
         </div>
     );
 };

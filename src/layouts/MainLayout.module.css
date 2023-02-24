@@ -11,4 +11,10 @@
     flex-direction: row;
     gap: 15px;
     width: 100%;
+    background-color: rgba(65, 65, 65, 0.9);
+    border-radius: 15px;
+}
+
+.mainBoxWhite{
+    background-color: rgba(255, 255, 255, 0.9);
 }

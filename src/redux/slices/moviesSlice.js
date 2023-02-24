@@ -8,18 +8,23 @@ const initialState = {
     errors: null,
     loading: false,
     genres: [],
-    genreChoice: {id: null, name: ''},
-    movieId: null,
+    genreChoice: {id: '28', name: 'Action'},
+    movieId: '',
     movieInfo: null,
-    queryMovie: ''
+    movieCast: null,
+    movieImages: null,
+    queryMovie: '',
+    themeSwitch: false,
+    homePop: [],
+    homeTopUp: []
 };
 
 const getAllMovies = createAsyncThunk(
     'moviesSlice/getAllMovies',
-    async ({page, sort}, thunkAPI) => {
+    async ({page, genre}, thunkAPI) => {
         try {
             // await new Promise(resolve => setTimeout(() => resolve(), 1000));
-            const {data} = await tmdbService.getAllMoviesByPage(page, sort);
+            const {data} = await tmdbService.getAllMoviesByPage(page, genre);
             return data
         } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
@@ -27,12 +32,12 @@ const getAllMovies = createAsyncThunk(
     }
 );
 
-const getMoviesGenre = createAsyncThunk(
-    'moviesSlice/getMoviesGenre',
-    async ({page, genre}, thunkAPI) => {
+const getTopOrUp = createAsyncThunk(
+    'moviesSlice/getTopOrUpSrv',
+    async ({page, path}, thunkAPI) => {
         try {
             // await new Promise(resolve => setTimeout(() => resolve(), 1000));
-            const {data} = await tmdbService.getMoviesByGenre(page, genre);
+            const {data} = await tmdbService.getTopOrUpSrv(page, path);
             return data
         } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
@@ -42,10 +47,10 @@ const getMoviesGenre = createAsyncThunk(
 
 const getMovieById = createAsyncThunk(
     'moviesSlice/getMovieById',
-    async ({movieId}, thunkAPI) => {
+    async ({movieId, option=''}, thunkAPI) => {
         try {
             // await new Promise(resolve => setTimeout(() => resolve(), 1000));
-            const {data} = await tmdbService.getMovieByIdSrv(movieId);
+            const {data} = await tmdbService.getMovieByIdSrv(movieId, option);
             return data
         } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
@@ -95,6 +100,12 @@ const moviesSlice = createSlice({
         }),
         setQuery:((state, action) =>{
             state.queryMovie = action.payload
+        }),
+        setSort:((state, action) =>{
+            state.sort = action.payload
+        }),
+        setTheme:((state, action) =>{
+            state.themeSwitch = action.payload
         })
     },
     extraReducers: builder =>
@@ -102,17 +113,25 @@ const moviesSlice = createSlice({
             .addCase(getAllMovies.fulfilled, (state, action) => {
                 const {results, page} = action.payload;
                 state.movies = results;
+                state.homePop = results;
                 state.page = page
                 state.loading = false;
             })
-            .addCase(getMoviesGenre.fulfilled, (state, action) => {
+            .addCase(getTopOrUp.fulfilled, (state, action) => {
                 const {results, page} = action.payload;
                 state.movies = results;
+                state.homeTopUp = results;
                 state.page = page
                 state.loading = false;
             })
             .addCase(getMovieById.fulfilled, (state, action) => {
-                state.movieInfo = action.payload;
+                if (action.payload?.title){
+                    state.movieInfo = action.payload;
+                } else if (action.payload?.cast) {
+                    state.movieCast = action.payload
+                } else if (action.payload?.backdrops || action.payload?.posters){
+                    state.movieImages = action.payload
+                }
                 state.loading = false;
             })
             .addCase(getSearchMovieByQuery.fulfilled, (state, action) => {
@@ -127,7 +146,7 @@ const moviesSlice = createSlice({
             .addCase(getSearchMovieByQuery.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(getMoviesGenre.pending, (state) => {
+            .addCase(getTopOrUp.pending, (state) => {
                 state.loading = true;
             })
             .addCase(getMovieById.pending, (state) => {
@@ -141,7 +160,7 @@ const moviesSlice = createSlice({
 
 const {
     reducer: moviesReducer,
-    actions: {setPage, setGenreChoice, setMovieId, setQuery}
+    actions: {setPage, setGenreChoice, setMovieId, setQuery, setSort, setTheme}
 } = moviesSlice;
 
 const moviesActions = {
@@ -149,11 +168,13 @@ const moviesActions = {
     getAllMovies,
     setPage,
     setGenreChoice,
-    getMoviesGenre,
+    getTopOrUp,
     getMovieById,
     setMovieId,
     getSearchMovieByQuery,
-    setQuery
+    setQuery,
+    setSort,
+    setTheme
 }
 
 export {

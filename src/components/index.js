@@ -8,3 +8,5 @@ export * from './hooks/useMyPage';
 export * from './MovieInfo/MovieInfo';
 export * from './Search/Search';
 export * from './AdvancedSearch/AdvancedSearch';
+export * from './Сarousel/Сarousel';
+export * from './UI/MyButton/MyButton';

@@ -8,20 +8,22 @@ const genre = '/genre/movie/list';
 const search = '/search/movie';
 
 const urls = {
-    allMovies:{
+    allMovies: {
         movies,
-        byPage: (page, sort) => `${movies}?sort_by=${sort}&page=${page}`,
+        byPage: (page, genre) => `${movies}?&page=${page}&with_genres=${genre}&language=uk`
     },
-    oneMovie:{
-        movie: (movieId) => `${movie}/${movieId}`
+    top_up: {
+        topUP: (page, path) => `${movie}/${path}?page=${page}&language=uk`
     },
-    searchByQuery:{
+    oneMovie: {
+        movie: (movieId, option) => `${movie}/${movieId}${option}?language=uk`
+    },
+    searchByQuery: {
         search,
-        byQuery:(page, query) => `${search}?query=${query}&page=${page}`
+        byQuery: (page, query) => `${search}?query=${query}&page=${page}&language=uk`
     },
     allGenre: {
-        genre,
-        byGenres: (page, genre) => `${movies}?page=${page}&with_genres=${genre}`
+        genre
     }
 };
 

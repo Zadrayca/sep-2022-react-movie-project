@@ -2,9 +2,9 @@ import {apiServiceMovies} from "./apiServices";
 import {urls} from "../configs";
 
 const tmdbService = {
-    getAllMoviesByPage: (page, sort) => apiServiceMovies.get(urls.allMovies.byPage(page, sort)),
-    getMoviesByGenre: (page, genre) => apiServiceMovies.get(urls.allGenre.byGenres(page, genre)),
-    getMovieByIdSrv: (movieId) => apiServiceMovies.get(urls.oneMovie.movie(movieId)),
+    getAllMoviesByPage: (page, genre) => apiServiceMovies.get(urls.allMovies.byPage(page, genre)),
+    getMovieByIdSrv: (movieId, option) => apiServiceMovies.get(urls.oneMovie.movie(movieId, option)),
+    getTopOrUpSrv: (page, path) => apiServiceMovies.get(urls.top_up.topUP(page, path)),
     getSearchByQuery: (page, query) => apiServiceMovies.get(urls.searchByQuery.byQuery(page, query)),
     getAllGenre:() => apiServiceMovies.get(urls.allGenre.genre),
 }

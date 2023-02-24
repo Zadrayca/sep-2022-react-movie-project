@@ -1,36 +1,70 @@
 import css from './HomePage.module.css';
-import {MoviesBox, PagesButton} from "../../components";
+import {Carousel, MoviesBox, MyButton, PagesButton, useMyPage} from "../../components";
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {moviesActions} from "../../redux";
 
 const HomePage = () => {
 
-    const {page, queryMovie, genreChoice, loading, sort} = useSelector(state => state.movies);
+    const {page, queryMovie, genreChoice, loading, movies, homePop, homeTopUp} = useSelector(state => state.movies);
 
     const dispatch = useDispatch();
 
     const [query, setQuery] = useSearchParams();
 
     useEffect(() => {
-        if (query.get('query')) {
-            dispatch(moviesActions.getSearchMovieByQuery({page: query.get('page'), query: query.get('query')}))
-        } else if (query.get('genre')) {
-            dispatch(moviesActions.getMoviesGenre({page: query.get('page'), genre: genreChoice.id}))
-        } else {
-            dispatch(moviesActions.getAllMovies({page: query.get('page'), sort: sort}))
-        }
+        dispatch(moviesActions.getAllMovies({
+            page: query.get('page'),
+            genre: query.get('genre')
+        }))
+        dispatch(moviesActions.getTopOrUp({
+            page: query.get('page'),
+            path: query.get('path')
+        }))
+        console.log('HOME');
+
     }, [dispatch, query]);
 
-    console.log(query.get('query'), query.get('genre'), query.get('page'));
-    console.log(loading);
+    console.log(query.get('page'), query.get('path'));
+    // console.log(loading);
+    const {nextPage, nextTopRatedPage, nextUpcomingPage} = useMyPage();
+
+    // top_rated upcoming
+
+    const [upTopSwitch, setUpTopSwitch] = useState(true);
+
+    const switcher = () => {
+        if (upTopSwitch) {
+            setUpTopSwitch(false)
+            setQuery({path: 'top_rated'})
+
+        } else {
+            setUpTopSwitch(true)
+            setQuery({path: 'upcoming'})
+        }
+    }
 
     return (
         <div className={css.homePage}>
-            <h1>Home Page, {page}</h1>
-            <PagesButton/>
-            {loading ? <div>Loading........</div> : <MoviesBox/>}
+            <div className={css.topBox}>
+                <h2>Popular Movie, {page}</h2>
+                {upTopSwitch ?
+                    <PagesButton nextPage={nextUpcomingPage}/>
+                    : <PagesButton nextPage={nextTopRatedPage}/>
+                }
+            </div>
+            <div className={css.carPop}>{loading ? <div>Loading........</div> : <Carousel movies={homePop}/>}</div>
+            <div className={css.switchBox}>
+                <div className={`${upTopSwitch ? css.switch : ''}`}>
+                    <MyButton disabled={upTopSwitch} onClick={switcher}>Upcoming</MyButton>
+                </div>
+                <div className={`${upTopSwitch ? '' : css.switch}`}>
+                    <MyButton disabled={!upTopSwitch} onClick={switcher}>Top Rated</MyButton>
+                </div>
+            </div>
+            {upTopSwitch ? <h2>Upcoming Movie, {page}</h2> : <h2>Top Rated Movie, {page}</h2>}
+            <div className={css.carPop}>{loading ? <div>Loading........</div> : <Carousel movies={homeTopUp}/>}</div>
         </div>
     );
 };

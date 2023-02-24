@@ -2,20 +2,30 @@ import {useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 
 const useMyPage = () => {
-    const {page, queryMovie, genreChoice} = useSelector(state => state.movies);
+    const {page, queryMovie, genreChoice, sort} = useSelector(state => state.movies);
     const [, setQuery] = useSearchParams({page: '1'});
 
-    const nextPage = () => {
-        setQuery({ page: `${page + 1}`, query: `${queryMovie}`, genre:`${genreChoice.name}`});
+    const nextPage = (newPage) => {
+        setQuery({page: `${page + newPage}`, genre: `${genreChoice.id}`});
     };
 
-    const previousPage = () => {
-        setQuery({ page: `${page - 1}`, query: `${queryMovie}`, genre:`${genreChoice.name}`});
+    const nextSearchPage = (newPage) => {
+        setQuery({page: `${page + newPage}`, query: `${queryMovie}`, year: ``});
+    };
+
+    const nextUpcomingPage = (newPage) => {
+        setQuery({page: `${page + newPage}`, path: 'upcoming'});
+    };
+
+    const nextTopRatedPage = (newPage) => {
+        setQuery({page: `${page + newPage}`, path: 'top_rated'});
     };
 
     return {
         nextPage,
-        previousPage
+        nextSearchPage,
+        nextUpcomingPage,
+        nextTopRatedPage
     }
 };
 

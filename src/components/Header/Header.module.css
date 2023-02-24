@@ -1,32 +1,99 @@
 .headerBox {
     display: flex;
     flex-direction: column;
+    height: 480px;
+    justify-content: space-between;
+    border-radius: 15px;
 }
 
 .header {
-    min-height: 50px;
-    background-color: #2e61b2;
+    min-height: 55px;
+    background-color: #313131;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    border-radius: 0 0 15px 15px;
 }
 
 .header a{
     text-decoration: none;
-    color: snow;
-    font-size: 20px;
+    /*font-size: 15px;*/
+    /*padding: 5px 5px;*/
+    border-radius: 10px;
+    /*!*color: black;*!*/
+    /*!*background-color: #03e9f4;*!*/
+    /*!*box-shadow: 0 0 4px #03e9f4;*!*/
 }
 
 .header a[class='active'] {
-    color: #c51d3d;
+    /*color: black;*/
+    box-shadow: 0 0 5px #03e9f4,
+    0 0 10px #03e9f4,
+    0 0 25px #03e9f4,
+    0 0 100px #03e9f4;
 }
 
+/*.header a:hover{*/
+/*    background: #03e9f4;*/
+/*    !*color: #050801;*!*/
+/*    box-shadow: 0 0 5px #03e9f4,*/
+/*    0 0 25px #03e9f4,*/
+/*    0 0 50px #03e9f4,*/
+/*    0 0 200px #03e9f4;*/
+/*}*/
+
 .header2 {
-    min-height: 50px;
-    background-color: cadetblue;
+    min-height: 55px;
+    background-color: #313131;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    border-radius: 15px 15px 0 0;
+}
+
+.headerWhite {
+    background-color: antiquewhite;
+}
+
+/*.headerWhite a {*/
+/*    color: #03e9f4;*/
+/*    background-color: #313131;*/
+/*}*/
+
+.headerWhite a[class='active'] {
+    /*color: snow;*/
+}
+
+.logoDark {
+    height: 40px;
+    width: 40px;
+}
+
+.logoBox a {
+    border: none;
+    box-shadow: 0 0 #03e9f4;
+    background-color: unset;
+}
+
+.logoBox{
+    padding: 5px 5px;
+    color: #03e9f4;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.logoBox:hover{
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+    0 0 25px #03e9f4,
+    0 0 50px #03e9f4,
+    0 0 200px #03e9f4;
 }

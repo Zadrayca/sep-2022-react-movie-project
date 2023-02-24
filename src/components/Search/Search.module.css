@@ -1,0 +1,19 @@
+.searchBox {
+    width: 200px;
+
+}
+
+.searchBox form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchBox button{
+    padding: 3px 5px;
+}
+
+.searchBox input {
+    border: 3px solid #313131;
+    border-radius: 5px;
+}

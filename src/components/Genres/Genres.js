@@ -7,7 +7,7 @@ import {Genre} from "../Genre/Genre";
 
 const Genres = () => {
 
-    const {genres} = useSelector(state => state.movies);
+    const {genres, themeSwitch} = useSelector(state => state.movies);
 
     const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const Genres = () => {
     }, [dispatch]);
 
     return (
-        <div className={css.genres}>
+        <div className={`${css.genres} ${themeSwitch ? css.genresWhite : ''}`}>
             {genres && genres.map(genre => <Genre key={genre.id} genre={genre}/>)}
         </div>
     );
