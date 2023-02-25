@@ -8,7 +8,6 @@ import {MyButton} from "../UI/MyButton/MyButton";
 const Genre = ({genre}) => {
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
 
     const activeGenre = () => {

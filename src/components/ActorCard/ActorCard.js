@@ -9,12 +9,10 @@ const ActorCard = ({actor}) => {
                     {actor.profile_path ?
                         <img loading={"lazy"} src={`${imagesUrl}/w185${actor.profile_path}`}
                              alt={'Movie poster'}
-                            // onClick={setMovieId}
                         /> :
                         <img className={css.noPoster}
                              src={`https://www.prokerala.com/movies/assets/img/no-poster-available.webp`}
                              alt={'Movie poster'}
-                            // onClick={setMovieId}
                         />}
                 </div>
                 <div>

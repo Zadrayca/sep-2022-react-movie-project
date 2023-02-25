@@ -1,4 +1,4 @@
-import {NavLink, useNavigate, useSearchParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -13,25 +13,13 @@ const Header = () => {
 
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();
-
-    const {
-        page,
-        queryMovie,
-        genreChoice,
-        loading,
-        movieId,
-        themeSwitch,
-        movies,
-        homePop,
-        queryYear
-    } = useSelector(state => state.movies);
+    const {queryMovie, movieId, themeSwitch, queryYear} = useSelector(state => state.movies);
 
     const [carouselMovies, setCarouselMovies] = useState([]);
 
     useEffect(() => {
         tmdbService.getAllMoviesByPage({page: '1', genre: ''}).then(({data}) => setCarouselMovies(data.results))
-        console.log('HEADER');
+        // console.log('HEADER');
     }, []);
 
     const getSortMovie = () => {
@@ -40,13 +28,13 @@ const Header = () => {
 
     const switcher = () => {
         if (themeSwitch) {
-            dispatch(moviesActions.setTheme(false))
+            dispatch(moviesActions.setTheme(false));
         } else {
-            dispatch(moviesActions.setTheme(true))
+            dispatch(moviesActions.setTheme(true));
         }
     }
 
-    console.log(themeSwitch);
+    // console.log(themeSwitch);
     return (
         <div className={css.headerBox}>
             <div className={`${css.header2} ${themeSwitch ? css.headerWhite : ''}`}>
@@ -75,8 +63,8 @@ const Header = () => {
                          title={'Доброго дня, User'}/>
                     <div>User</div>
                 </div>
-
             </div>
+
             <Carousel movies={carouselMovies}/>
 
             <div className={`${css.header} ${themeSwitch ? css.headerWhite : ''}`}>
@@ -87,12 +75,10 @@ const Header = () => {
                 <NavLink to={`topRated?page=1&path=top_rated`}><MyButton>Найкращі</MyButton></NavLink>
                 <NavLink to={`search?page=1&query=${queryMovie}&year=${queryYear}`}><MyButton>Пошук</MyButton></NavLink>
                 <NavLink to={`/movie?movieId=${movieId}`}><MyButton>Фільм Інфо</MyButton></NavLink>
-                {/*<NavLink to={'test'}><MyButton>Test Page</MyButton></NavLink>*/}
 
                 <Search/>
 
             </div>
-
         </div>
     );
 };

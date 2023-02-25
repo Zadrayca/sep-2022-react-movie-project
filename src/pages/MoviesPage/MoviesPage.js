@@ -1,8 +1,9 @@
-import css from './MoviesPage.module.css';
-import {MoviesBox, PagesButton, useMyPage} from "../../components";
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
+
+import css from './MoviesPage.module.css';
+import {MoviesBox, PagesButton, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const MoviesPage = () => {
@@ -18,11 +19,11 @@ const MoviesPage = () => {
             page: query.get('page'),
             genre: query.get('genre')
         }))
-        console.log('Movies');
+        // console.log('Movies');
 
     }, [dispatch, query]);
 
-    console.log(query.get('genre'), query.get('page'));
+    // console.log(query.get('genre'), query.get('page'));
     // console.log(loading);
 
     const {nextPage} = useMyPage();

@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 
@@ -7,8 +7,6 @@ import {MovieInfo} from "../../components";
 import {moviesActions} from "../../redux";
 
 const MoviePage = () => {
-
-    // const {movieId} = useSelector(state => state.movies);
 
     const dispatch = useDispatch();
 
@@ -19,7 +17,7 @@ const MoviePage = () => {
         dispatch(moviesActions.getMovieById({movieId: query.get('movieId'), option: '/credits'}))
         dispatch(moviesActions.getMovieById({movieId: query.get('movieId'), option: '/images'}))
         dispatch(moviesActions.getMovieById({movieId: query.get('movieId'), option: '/videos'}))
-        console.log(query.get('movieId'));
+        // console.log(query.get('movieId'));
     }, [dispatch, query]);
 
     return (

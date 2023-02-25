@@ -1,13 +1,14 @@
-import css from './HomePage.module.css';
-import {Carousel, MoviesBox, MyButton, PagesButton, useMyPage} from "../../components";
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+
+import css from './HomePage.module.css';
+import {Carousel, MyButton, PagesButton, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const HomePage = () => {
 
-    const {page, queryMovie, genreChoice, loading, movies, homePop, homeTopUp} = useSelector(state => state.movies);
+    const {page, loading, homePop, homeTopUp} = useSelector(state => state.movies);
 
     const dispatch = useDispatch();
 
@@ -22,15 +23,13 @@ const HomePage = () => {
             page: query.get('page'),
             path: query.get('path')
         }))
-        console.log('HOME');
+        // console.log('HOME');
 
     }, [dispatch, query]);
 
-    console.log(query.get('page'), query.get('path'));
-    // console.log(loading);
-    const {nextPage, nextTopRatedPage, nextUpcomingPage} = useMyPage();
+    // console.log(query.get('page'), query.get('path'));
 
-    // top_rated upcoming
+    const {nextTopRatedPage, nextUpcomingPage} = useMyPage();
 
     const [upTopSwitch, setUpTopSwitch] = useState(true);
 

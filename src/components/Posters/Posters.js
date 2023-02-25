@@ -2,9 +2,10 @@ import {useSelector} from "react-redux";
 
 import css from './Posters.module.css';
 import {PosterCard} from "../PoserCard/PosterCard";
+
 const Posters = () => {
 
-    const {movieInfo, movieCast, movieImages, themeSwitch} = useSelector(state => state.movies);
+    const {movieImages, themeSwitch} = useSelector(state => state.movies);
 
     return (
         <div className={`${css.postersBox} ${themeSwitch ? css.postersBoxWhite : ''}`}>

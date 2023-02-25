@@ -1,5 +1,4 @@
 .postersBox {
-    /*position: relative;*/
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -16,5 +15,4 @@
 
 .postersBoxWhite {
     background-color: #f7ead6;
-
 }

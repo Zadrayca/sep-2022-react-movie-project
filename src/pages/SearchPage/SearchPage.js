@@ -1,8 +1,9 @@
-import css from './SearchPage.module.css';
-import {MoviesBox, PagesButton, Search, useMyPage} from "../../components";
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
+
+import css from './SearchPage.module.css';
+import {MoviesBox, PagesButton, Search, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const SearchPage = () => {
@@ -22,7 +23,7 @@ const SearchPage = () => {
             }))
     }, [dispatch, query]);
 
-    console.log(query.get('query'), query.get('page'), query.get('year'));
+    // console.log(query.get('query'), query.get('page'), query.get('year'));
     // console.log(loading);
 
     const {nextSearchPage} = useMyPage();

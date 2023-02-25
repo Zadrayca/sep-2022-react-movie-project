@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
 import {tmdbService} from "../../services";
 
 const initialState = {
@@ -24,7 +25,6 @@ const getAllMovies = createAsyncThunk(
     'moviesSlice/getAllMovies',
     async ({page, genre}, thunkAPI) => {
         try {
-            // await new Promise(resolve => setTimeout(() => resolve(), 1000));
             const {data} = await tmdbService.getAllMoviesByPage(page, genre);
             return data
         } catch (e) {
@@ -37,7 +37,6 @@ const getTopOrUp = createAsyncThunk(
     'moviesSlice/getTopOrUpSrv',
     async ({page, path}, thunkAPI) => {
         try {
-            // await new Promise(resolve => setTimeout(() => resolve(), 1000));
             const {data} = await tmdbService.getTopOrUpSrv(page, path);
             return data
         } catch (e) {
@@ -50,7 +49,6 @@ const getMovieById = createAsyncThunk(
     'moviesSlice/getMovieById',
     async ({movieId, option=''}, thunkAPI) => {
         try {
-            // await new Promise(resolve => setTimeout(() => resolve(), 1000));
             const {data} = await tmdbService.getMovieByIdSrv(movieId, option);
             return data
         } catch (e) {
@@ -63,7 +61,6 @@ const getSearchMovieByQuery = createAsyncThunk(
     'moviesSlice/getSearchMovieByQuery',
     async ({page, query, year}, thunkAPI) => {
         try {
-            // await new Promise(resolve => setTimeout(() => resolve(), 1000));
             const {data} = await tmdbService.getSearchByQuery(page, query, year);
             return data
         } catch (e) {
@@ -76,7 +73,6 @@ const getAllGenre = createAsyncThunk(
     'moviesSlice/getAllGenre',
     async (_, thunkAPI) => {
         try {
-            // await new Promise(resolve => setTimeout(() => resolve(), 1000));
             const {data} = await tmdbService.getAllGenre();
             return data
         } catch (e) {

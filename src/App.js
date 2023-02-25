@@ -2,7 +2,7 @@ import {Route, Routes} from "react-router-dom";
 
 import './App.css';
 import {MainLayout} from "./layouts";
-import {HomePage, MoviePage, MoviesPage, NotFoundPage, TestPage, SearchPage, UpcomingPage, TopRatedPage} from "./pages";
+import {HomePage, MoviePage, MoviesPage, NotFoundPage, SearchPage, UpcomingPage, TopRatedPage} from "./pages";
 
 const App = () => (
     <div className="App">
@@ -14,9 +14,6 @@ const App = () => (
                 <Route path={'topRated'} element={<TopRatedPage/>}/>
                 <Route path={'search'} element={<SearchPage/>}/>
                 <Route path={'movie'} element={<MoviePage/>}/>
-                <Route path={'test/movie'} element={<MoviePage/>}/>
-                <Route path={'test'} element={<TestPage/>}/>
-
                 <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
         </Routes>

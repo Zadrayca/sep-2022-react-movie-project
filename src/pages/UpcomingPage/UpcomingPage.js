@@ -23,7 +23,7 @@ const UpcomingPage = () => {
         }))
     }, [dispatch, query]);
 
-    console.log(query.get('page'));
+    // console.log(query.get('page'));
 
     return (
         <div className={css.upcomingPage}>

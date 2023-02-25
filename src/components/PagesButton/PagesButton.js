@@ -1,14 +1,11 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 import css from './PagesButton.module.css';
-import {moviesActions} from "../../redux";
-import {useSearchParams} from "react-router-dom";
 import {MyButton} from "../UI/MyButton/MyButton";
 
-// setPage
 const PagesButton = ({nextPage}) => {
 
-    const {page, sort, genreChoice} = useSelector(state => state.movies);
+    const {page} = useSelector(state => state.movies);
 
     return (
         <div className={css.buttonDiv}>

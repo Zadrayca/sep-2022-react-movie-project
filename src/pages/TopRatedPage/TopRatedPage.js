@@ -23,7 +23,7 @@ const TopRatedPage = () => {
         }))
     }, [dispatch, query]);
 
-    console.log(query.get('page'), query.get('path'));
+    // console.log(query.get('page'), query.get('path'));
 
     return (
         <div className={css.topRatedPage}>

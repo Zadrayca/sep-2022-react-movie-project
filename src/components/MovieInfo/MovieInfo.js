@@ -7,7 +7,6 @@ import ReactStars from "react-rating-stars-component";
 import {Actors} from "../Actors/Actors";
 import {Badges} from "../Badges/Badges";
 import {Posters} from "../Posters/Posters";
-import ReactPlayer from "react-player/youtube";
 import {VideoBox} from "../VideoBox/VideoBox";
 
 const MovieInfo = () => {
@@ -16,10 +15,10 @@ const MovieInfo = () => {
 
     const [showPopup, setShowPopup] = useState(false);
 
-    console.log(movieInfo);
-    console.log(movieCast);
-    console.log(movieImages);
-    console.log(movieVideo);
+    // console.log(movieInfo);
+    // console.log(movieCast);
+    // console.log(movieImages);
+    // console.log(movieVideo);
 
     return (
         <div className={`${css.movieInfo} ${themeSwitch ? css.movieInfoWhite : ''}`}>
@@ -109,6 +108,7 @@ const MovieInfo = () => {
                     <div><h4>Про що фільм : "{movieInfo?.title}"</h4></div>
                     <div>{movieInfo.overview}</div>
                 </div>
+
                 {movieCast?.cast[0] && <h3>Актори :</h3>}
                 {movieCast?.cast[0] && <Actors/>}
 
@@ -117,12 +117,6 @@ const MovieInfo = () => {
 
                 {movieImages?.posters[0] && <h3>Постери :</h3>}
                 {movieImages?.posters[0] && <Posters/>}
-
-
-
-                {/*<div>*/}
-                {/*    {movieVideo && <ReactPlayer controls={true} url={`https://www.youtube.com/watch?v=${movieVideo[0].key}`}/>}*/}
-                {/*</div>*/}
 
             </div>}
         </div>
