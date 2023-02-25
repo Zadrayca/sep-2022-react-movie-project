@@ -1,11 +1,10 @@
 import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 import css from './Search.module.css';
 import {moviesActions} from "../../redux";
 import {MyButton} from "../UI/MyButton/MyButton";
-
 
 const Search = () => {
 
@@ -16,23 +15,25 @@ const Search = () => {
 
     const dispatch = useDispatch();
 
-    const {page, genreChoice} = useSelector(state => state.movies);
-
     const search = (data) => {
-        dispatch(moviesActions.setQuery(data.search))
-        dispatch(moviesActions.setGenreChoice({id: '', name: ''}))
-        navigate(`search?page=1&query=${data.search}&year=${''}`)
-        reset()
+        dispatch(moviesActions.setQuery(data.search));
+        dispatch(moviesActions.setYear(data.year));
+        dispatch(moviesActions.setGenreChoice({id: '', name: ''}));
+        navigate(`/search?page=1&query=${data.search}&year=${data.year}`);
+        reset();
     }
 
     return (
         <div className={css.searchBox}>
             <form onSubmit={handleSubmit(search)}>
                 <div>
-                    <input type={"text"} placeholder={'search movie'} {...register('search')}/>
+                    <input type={"text"} placeholder={'назва'} {...register('search')}/>
                 </div>
                 <div>
-                    <MyButton disabled={!inputValue}>Search</MyButton>
+                    <input className={css.year} type={"number"} placeholder={'рік'} {...register('year')}/>
+                </div>
+                <div>
+                    <MyButton disabled={!inputValue}>Пошук</MyButton>
                 </div>
             </form>
         </div>

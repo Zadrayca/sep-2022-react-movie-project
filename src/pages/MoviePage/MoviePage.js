@@ -7,7 +7,7 @@ import {moviesActions} from "../../redux";
 import {useSearchParams} from "react-router-dom";
 const MoviePage = () => {
 
-    const {movieId} = useSelector(state => state.movies);
+    // const {movieId} = useSelector(state => state.movies);
 
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const MoviePage = () => {
 
     return (
         <div className={css.moviePage}>
-            <h1>Movie Page</h1>
+            <h2>Фільм інфо</h2>
             <MovieInfo/>
         </div>
     );

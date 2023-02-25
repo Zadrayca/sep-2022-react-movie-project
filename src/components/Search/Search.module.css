@@ -1,12 +1,16 @@
 .searchBox {
-    width: 200px;
+    width: 350px;
+}
 
+.year {
+    width: 50px;
 }
 
 .searchBox form {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    gap: 3px;
 }
 
 .searchBox button{

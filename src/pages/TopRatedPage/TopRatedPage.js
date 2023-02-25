@@ -27,7 +27,7 @@ const TopRatedPage = () => {
 
     return (
         <div className={css.topRatedPage}>
-            <h1>Top Rated Page: №{page}</h1>
+            <h2>Найкращі, сторінка : №{page}</h2>
             <PagesButton nextPage={nextTopRatedPage}/>
             {loading ? <div>Loading........</div> : <MoviesBox/>}
         </div>

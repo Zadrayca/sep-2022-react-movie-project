@@ -15,9 +15,7 @@ const Header = () => {
 
     const navigate = useNavigate();
 
-    const {page, queryMovie, genreChoice, loading, movieId, themeSwitch, movies, homePop} = useSelector(state => state.movies);
-
-    // const [, setQuery] = useSearchParams({page: '1', sort: `popularity.desc`});
+    const {page, queryMovie, genreChoice, loading, movieId, themeSwitch, movies, homePop, queryYear} = useSelector(state => state.movies);
 
     const [carouselMovies, setCarouselMovies] = useState([]);
 
@@ -26,13 +24,8 @@ const Header = () => {
         console.log('HEADER');
     }, []);
 
-    // console.log(carouselMovies);
-
     const getSortMovie = () => {
         dispatch(moviesActions.setGenreChoice({id: '', name: ''}))
-        // setQuery({page: '1', sort: `${sort}`});
-        // setQuery({page: '1', sort: `${sort}`, genre: ``, query: ''});
-        // navigate(`/?page=1&sort=${sort}&genre=&query=`);
     };
 
     const switcher = () => {
@@ -55,7 +48,7 @@ const Header = () => {
                          alt={'Switcher'}/>
                 </div>
 
-                <div className={css.logoBox}><NavLink to={''}>
+                <div className={css.logoBox}><NavLink to={`/?page=1&genre=&path=upcoming`} onClick={getSortMovie}>
                     <img className={css.logoDark}
                          src={themeSwitch ? 'https://cdn-icons-png.flaticon.com/128/1146/1146152.png'
                              : 'https://cdn-icons-png.flaticon.com/128/1146/1146203.png'}
@@ -71,26 +64,14 @@ const Header = () => {
 
             </div>
             <Carousel movies={carouselMovies}/>
-            {/*<div className={`${css.header} ${themeSwitch ? css.headerWhite : ''}`}>*/}
-            {/*    <NavLink to={`/?page=1&genre=&query=`} onClick={getSortMovie}>Home Page</NavLink>*/}
-            {/*    <NavLink to={`movies?page=1&genre=`} onClick={getSortMovie}>All Movies</NavLink>*/}
-            {/*    <NavLink to={`upcoming?page=1&path=upcoming`}>Upcoming Page</NavLink>*/}
-            {/*    <NavLink to={`topRated?page=1&path=top_rated`}>Top Rated Page</NavLink>*/}
-            {/*    <NavLink to={`search?page=1&query=${queryMovie}`}>Search Page</NavLink>*/}
-            {/*    <NavLink to={`/movie?movieId=${movieId}`}>Movie Page</NavLink>*/}
-            {/*    <NavLink to={'test'}>Test Page</NavLink>*/}
-            {/*    <div>*/}
-            {/*        <Search/>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
 
             <div className={`${css.header} ${themeSwitch ? css.headerWhite : ''}`}>
-                <NavLink to={`/?page=1&genre=&path=upcoming`} onClick={getSortMovie}><MyButton>Home Page</MyButton></NavLink>
-                <NavLink to={`movies?page=1&genre=`} onClick={getSortMovie}><MyButton>All Movies</MyButton></NavLink>
-                <NavLink to={`upcoming?page=1&path=upcoming`}><MyButton>Upcoming Page</MyButton></NavLink>
-                <NavLink to={`topRated?page=1&path=top_rated`}><MyButton>Top Rated Page</MyButton></NavLink>
-                <NavLink to={`search?page=1&query=${queryMovie}`}><MyButton>Search Page</MyButton></NavLink>
-                <NavLink to={`/movie?movieId=${movieId}`}><MyButton>Movie Page</MyButton></NavLink>
+                <NavLink to={`/?page=1&genre=&path=upcoming`} onClick={getSortMovie}><MyButton>Головна</MyButton></NavLink>
+                <NavLink to={`movies?page=1&genre=`} onClick={getSortMovie}><MyButton>Усі Фільми</MyButton></NavLink>
+                <NavLink to={`upcoming?page=1&path=upcoming`}><MyButton>Очікувані</MyButton></NavLink>
+                <NavLink to={`topRated?page=1&path=top_rated`}><MyButton>Найкращі</MyButton></NavLink>
+                <NavLink to={`search?page=1&query=${queryMovie}&year=${queryYear}`}><MyButton>Пошук</MyButton></NavLink>
+                <NavLink to={`/movie?movieId=${movieId}`}><MyButton>Фільм Інфо</MyButton></NavLink>
                 {/*<NavLink to={'test'}><MyButton>Test Page</MyButton></NavLink>*/}
 
                 <Search/>

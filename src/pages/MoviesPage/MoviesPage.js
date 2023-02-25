@@ -29,7 +29,7 @@ const MoviesPage = () => {
 
     return (
         <div className={css.moviesPage}>
-            <h1>Movies Page: №{page}</h1>
+            <h2>Усі фільми, сторінка : №{page}</h2>
             <PagesButton nextPage={nextPage}/>
             {loading ? <div>Loading........</div> : <MoviesBox/>}
         </div>

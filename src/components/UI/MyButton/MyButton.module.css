@@ -1,7 +1,6 @@
 .myButton{
     padding: 8px 12px;
     background-color: #009ca5;
-    /*background-color: #03e9f4;*/
     color: #313131;
     font-weight: bold;
     border: none;
@@ -21,14 +20,7 @@
     0 0 200px #03e9f4;
 }
 
-
-
 .myButtonWhite {
-
     background-color: #d1cfcf;
     color: black;
-    /*background-color: #313131;*/
-    /*color: #03e9f4;*/
-    /*color: #009ca5;*/
-
 }

@@ -4,7 +4,7 @@ const imagesUrl = 'https://image.tmdb.org/t/p';
 
 const movies = '/discover/movie';
 const movie = '/movie';
-const genre = '/genre/movie/list';
+const genre = '/genre/movie/list?language=uk';
 const search = '/search/movie';
 
 const urls = {
@@ -20,7 +20,7 @@ const urls = {
     },
     searchByQuery: {
         search,
-        byQuery: (page, query) => `${search}?query=${query}&page=${page}&language=uk`
+        byQuery: (page, query, year) => `${search}?query=${query}&page=${page}&year=${year}&language=uk`
     },
     allGenre: {
         genre

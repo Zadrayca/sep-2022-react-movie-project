@@ -27,7 +27,7 @@ const UpcomingPage = () => {
 
     return (
         <div className={css.upcomingPage}>
-            <h1>Upcoming Page: №{page}</h1>
+            <h2>Очікувані, сторінка : №{page}</h2>
             <PagesButton nextPage={nextUpcomingPage}/>
             {loading ? <div>Loading........</div> : <MoviesBox/>}
         </div>

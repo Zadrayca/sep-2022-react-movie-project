@@ -47,23 +47,32 @@ const HomePage = () => {
 
     return (
         <div className={css.homePage}>
+
             <div className={css.topBox}>
-                <h2>Popular Movie, {page}</h2>
+                <h2>Популярні, сторінка : №{page}</h2>
                 {upTopSwitch ?
                     <PagesButton nextPage={nextUpcomingPage}/>
                     : <PagesButton nextPage={nextTopRatedPage}/>
                 }
             </div>
             <div className={css.carPop}>{loading ? <div>Loading........</div> : <Carousel movies={homePop}/>}</div>
+
+            <div className={css.topBox}>
+                {upTopSwitch ? <h2>Очікувані, сторінка : №{page}</h2> : <h2>Найкращі, сторінка : №{page}</h2>}
+                {upTopSwitch ?
+                    <PagesButton nextPage={nextUpcomingPage}/>
+                    : <PagesButton nextPage={nextTopRatedPage}/>
+                }
+            </div>
+
             <div className={css.switchBox}>
                 <div className={`${upTopSwitch ? css.switch : ''}`}>
-                    <MyButton disabled={upTopSwitch} onClick={switcher}>Upcoming</MyButton>
+                    <MyButton disabled={upTopSwitch} onClick={switcher}>Очікувані</MyButton>
                 </div>
                 <div className={`${upTopSwitch ? '' : css.switch}`}>
-                    <MyButton disabled={!upTopSwitch} onClick={switcher}>Top Rated</MyButton>
+                    <MyButton disabled={!upTopSwitch} onClick={switcher}>Найкращі</MyButton>
                 </div>
             </div>
-            {upTopSwitch ? <h2>Upcoming Movie, {page}</h2> : <h2>Top Rated Movie, {page}</h2>}
             <div className={css.carPop}>{loading ? <div>Loading........</div> : <Carousel movies={homeTopUp}/>}</div>
         </div>
     );

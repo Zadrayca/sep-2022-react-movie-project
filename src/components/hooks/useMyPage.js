@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 
 const useMyPage = () => {
-    const {page, queryMovie, genreChoice, sort} = useSelector(state => state.movies);
+    const {page, queryMovie, genreChoice, queryYear} = useSelector(state => state.movies);
     const [, setQuery] = useSearchParams({page: '1'});
 
     const nextPage = (newPage) => {
@@ -10,7 +10,7 @@ const useMyPage = () => {
     };
 
     const nextSearchPage = (newPage) => {
-        setQuery({page: `${page + newPage}`, query: `${queryMovie}`, year: ``});
+        setQuery({page: `${page + newPage}`, query: `${queryMovie}`, year: `${queryYear}`});
     };
 
     const nextUpcomingPage = (newPage) => {

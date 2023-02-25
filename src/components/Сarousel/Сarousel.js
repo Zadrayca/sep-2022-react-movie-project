@@ -1,6 +1,6 @@
+import {useSelector} from "react-redux";
 
 import css from './Сarousel.module.css';
-import {useSelector} from "react-redux";
 import {MoviesCard} from "../MoviesCard/MoviesCard";
 
 const Carousel = ({movies}) => {

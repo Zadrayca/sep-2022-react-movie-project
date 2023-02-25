@@ -1,11 +1,11 @@
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import css from './Genre.module.css';
+import css from './Badge.module.css';
 import {moviesActions} from "../../redux";
 import {MyButton} from "../UI/MyButton/MyButton";
 
-const Genre = ({genre}) => {
+const Badge = ({genre}) => {
 
     const dispatch = useDispatch();
 
@@ -17,12 +17,12 @@ const Genre = ({genre}) => {
     };
 
     return (
-        <div className={css.genre}>
+        <div className={css.badge}>
             <MyButton onClick={activeGenre}>{genre.name}</MyButton>
         </div>
     );
 };
 
 export {
-    Genre
+    Badge
 };

@@ -1,16 +1,19 @@
-.genres {
+.actorsBox {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-    width: 15%;
-    height: 965px;
+    height: 400px;
+    width: 90%;
+    padding-top: 15px;
+    overflow-y: scroll;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     padding-left: 15px;
     background-color: rgba(65, 65, 65, 0.9);
 }
 
-.genresWhite {
-    background-color: antiquewhite;
+.actorsBoxWhite {
+    background-color: #f7ead6;
+
 }

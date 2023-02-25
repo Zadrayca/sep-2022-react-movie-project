@@ -14,6 +14,7 @@ const initialState = {
     movieCast: null,
     movieImages: null,
     queryMovie: '',
+    queryYear: '',
     themeSwitch: false,
     homePop: [],
     homeTopUp: []
@@ -60,10 +61,10 @@ const getMovieById = createAsyncThunk(
 
 const getSearchMovieByQuery = createAsyncThunk(
     'moviesSlice/getSearchMovieByQuery',
-    async ({page, query}, thunkAPI) => {
+    async ({page, query, year}, thunkAPI) => {
         try {
             // await new Promise(resolve => setTimeout(() => resolve(), 1000));
-            const {data} = await tmdbService.getSearchByQuery(page, query);
+            const {data} = await tmdbService.getSearchByQuery(page, query, year);
             return data
         } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
@@ -100,6 +101,9 @@ const moviesSlice = createSlice({
         }),
         setQuery:((state, action) =>{
             state.queryMovie = action.payload
+        }),
+        setYear:((state, action) =>{
+            state.queryYear = action.payload
         }),
         setSort:((state, action) =>{
             state.sort = action.payload
@@ -160,7 +164,7 @@ const moviesSlice = createSlice({
 
 const {
     reducer: moviesReducer,
-    actions: {setPage, setGenreChoice, setMovieId, setQuery, setSort, setTheme}
+    actions: {setPage, setGenreChoice, setMovieId, setQuery, setSort, setTheme, setYear}
 } = moviesSlice;
 
 const moviesActions = {
@@ -173,6 +177,7 @@ const moviesActions = {
     setMovieId,
     getSearchMovieByQuery,
     setQuery,
+    setYear,
     setSort,
     setTheme
 }
