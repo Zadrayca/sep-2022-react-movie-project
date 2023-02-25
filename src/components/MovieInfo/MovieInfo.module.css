@@ -1,8 +1,21 @@
 .movieInfo{
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     color: snow;
+    padding-bottom: 15px;
+}
+.movieInfo h2 {
+    margin: 0;
+}
+
+.movieInfo h4 {
+    margin: 0;
+}
+
+.movieInfo h3 {
+    margin: 0;
 }
 
 .imgBox {
@@ -16,11 +29,30 @@
     height: 30px;
 }
 
+.bigPic {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -130px;
+    right: -550px;
+    height: 900px;
+    width: 900px;
+    border-radius: 15px;
+    background-color: rgb(0, 154, 163, 0.7);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bigPic img {
+    height: 700px;
+}
+
 .movieInfoWhite {
     color: black;
 }
 
 .contentBox {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 15px;

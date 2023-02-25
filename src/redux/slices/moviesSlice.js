@@ -4,7 +4,6 @@ import {tmdbService} from "../../services";
 const initialState = {
     movies: [],
     page: 1,
-    sort: 'popularity.desc',
     errors: null,
     loading: false,
     genres: [],
@@ -13,6 +12,7 @@ const initialState = {
     movieInfo: null,
     movieCast: null,
     movieImages: null,
+    movieVideo: '',
     queryMovie: '',
     queryYear: '',
     themeSwitch: false,
@@ -105,8 +105,8 @@ const moviesSlice = createSlice({
         setYear:((state, action) =>{
             state.queryYear = action.payload
         }),
-        setSort:((state, action) =>{
-            state.sort = action.payload
+        setVideo:((state, action) =>{
+            state.movieVideo = action.payload
         }),
         setTheme:((state, action) =>{
             state.themeSwitch = action.payload
@@ -135,6 +135,8 @@ const moviesSlice = createSlice({
                     state.movieCast = action.payload
                 } else if (action.payload?.backdrops || action.payload?.posters){
                     state.movieImages = action.payload
+                } else if (action.payload?.results[0]?.site === 'YouTube'){
+                    state.movieVideo = action.payload.results
                 }
                 state.loading = false;
             })
@@ -164,7 +166,7 @@ const moviesSlice = createSlice({
 
 const {
     reducer: moviesReducer,
-    actions: {setPage, setGenreChoice, setMovieId, setQuery, setSort, setTheme, setYear}
+    actions: {setPage, setGenreChoice, setMovieId, setQuery, setVideo, setTheme, setYear}
 } = moviesSlice;
 
 const moviesActions = {
@@ -178,7 +180,7 @@ const moviesActions = {
     getSearchMovieByQuery,
     setQuery,
     setYear,
-    setSort,
+    setVideo,
     setTheme
 }
 

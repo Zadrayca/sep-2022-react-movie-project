@@ -7,19 +7,6 @@ const Actors = () => {
 
     const {movieInfo, movieCast, movieImages, themeSwitch} = useSelector(state => state.movies);
 
-
-    // const actors = [];
-    // movieCast.cast.forEach(item => {
-    //     actors.push(item)
-    // })
-    // movieCast.crew.forEach(item => {
-    //     actors.push(item)
-    // })
-
-    // Screenplay
-    // known_for_department:"Acting"
-
-
     // const z = {
     //     "adult": false,
     //     "gender": 2,
@@ -49,19 +36,8 @@ const Actors = () => {
     //     "job": "Key Makeup Artist"
     // }
 
-    // const actors = [{...movieCast.cast, ...movieCast.crew}]
-    // console.log(actors.filter(act => act.known_for_department === "Directing"));
-    // console.log(actors);
-
-    // const newActors = [];
-
-    // actors.sort((a, b) => a.id - b.id)
-    // console.log(actors.map(actor => actor.job? actor.job : actor.name));
-    // console.log(newActors);
-
     return (
         <div className={`${css.actorsBox} ${themeSwitch ? css.actorsBoxWhite : ''}`}>
-            {/*{movieCast.crew && movieCast.crew.map(cre => cre.job === 'Director' ? <div>{cre.name}</div> : '')}*/}
             {movieCast && movieCast.cast.map(actor => <ActorCard key={actor.credit_id} actor={actor}/>)}
         </div>
     );

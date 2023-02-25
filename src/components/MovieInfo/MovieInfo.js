@@ -1,17 +1,25 @@
-import css from './MovieInfo.module.css';
 import {useSelector} from "react-redux";
+import {useState} from "react";
+
+import css from './MovieInfo.module.css';
 import {imagesUrl} from "../../configs";
 import ReactStars from "react-rating-stars-component";
 import {Actors} from "../Actors/Actors";
 import {Badges} from "../Badges/Badges";
+import {Posters} from "../Posters/Posters";
+import ReactPlayer from "react-player/youtube";
+import {VideoBox} from "../VideoBox/VideoBox";
 
 const MovieInfo = () => {
 
-    const {movieInfo, movieCast, movieImages, themeSwitch} = useSelector(state => state.movies);
+    const {movieInfo, movieCast, movieImages, themeSwitch, movieVideo} = useSelector(state => state.movies);
+
+    const [showPopup, setShowPopup] = useState(false);
 
     console.log(movieInfo);
     console.log(movieCast);
     console.log(movieImages);
+    console.log(movieVideo);
 
     return (
         <div className={`${css.movieInfo} ${themeSwitch ? css.movieInfoWhite : ''}`}>
@@ -32,10 +40,15 @@ const MovieInfo = () => {
                             />
                             <Badges/>
                         </div>
+                        {showPopup && <div className={css.bigPic} onClick={() => setShowPopup(false)}>
+                            <img loading={"lazy"} src={`${imagesUrl}/w500${movieInfo.poster_path}`}
+                                 alt={'Movie poster'}
+                            />
+                        </div>}
                         {movieInfo.poster_path ?
                             <img loading={"lazy"} src={`${imagesUrl}/w342${movieInfo.poster_path}`}
                                  alt={'Movie poster'}
-                                // onClick={setMovieId}
+                                 onClick={() => setShowPopup(true)}
                             /> :
                             <img className={css.noPoster}
                                  src={`https://www.prokerala.com/movies/assets/img/no-poster-available.webp`}
@@ -96,8 +109,20 @@ const MovieInfo = () => {
                     <div><h4>Про що фільм : "{movieInfo?.title}"</h4></div>
                     <div>{movieInfo.overview}</div>
                 </div>
-                <h3>Actors :</h3>
-                <Actors/>
+                {movieCast?.cast[0] && <h3>Актори :</h3>}
+                {movieCast?.cast[0] && <Actors/>}
+
+                {movieVideo && <h3>Трейлери : </h3>}
+                {movieVideo && <VideoBox/>}
+
+                {movieImages?.posters[0] && <h3>Постери :</h3>}
+                {movieImages?.posters[0] && <Posters/>}
+
+
+
+                {/*<div>*/}
+                {/*    {movieVideo && <ReactPlayer controls={true} url={`https://www.youtube.com/watch?v=${movieVideo[0].key}`}/>}*/}
+                {/*</div>*/}
 
             </div>}
         </div>

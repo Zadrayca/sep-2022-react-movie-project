@@ -18,30 +18,15 @@
 
 .header a{
     text-decoration: none;
-    /*font-size: 15px;*/
-    /*padding: 5px 5px;*/
     border-radius: 10px;
-    /*!*color: black;*!*/
-    /*!*background-color: #03e9f4;*!*/
-    /*!*box-shadow: 0 0 4px #03e9f4;*!*/
 }
 
 .header a[class='active'] {
-    /*color: black;*/
     box-shadow: 0 0 5px #03e9f4,
     0 0 10px #03e9f4,
     0 0 25px #03e9f4,
     0 0 100px #03e9f4;
 }
-
-/*.header a:hover{*/
-/*    background: #03e9f4;*/
-/*    !*color: #050801;*!*/
-/*    box-shadow: 0 0 5px #03e9f4,*/
-/*    0 0 25px #03e9f4,*/
-/*    0 0 50px #03e9f4,*/
-/*    0 0 200px #03e9f4;*/
-/*}*/
 
 .header2 {
     min-height: 55px;
@@ -57,27 +42,24 @@
     background-color: antiquewhite;
 }
 
-/*.headerWhite a {*/
-/*    color: #03e9f4;*/
-/*    background-color: #313131;*/
-/*}*/
-
-.headerWhite a[class='active'] {
-    /*color: snow;*/
-}
-
 .logoDark {
     height: 40px;
     width: 40px;
 }
 
 .logoBox a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     border: none;
     box-shadow: 0 0 #03e9f4;
     background-color: unset;
 }
 
 .logoBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 5px 5px;
     color: #03e9f4;
     font-weight: bold;

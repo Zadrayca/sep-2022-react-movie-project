@@ -1,6 +1,6 @@
-.actorsBox {
+.postersBox {
+    /*position: relative;*/
     display: flex;
-
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
@@ -12,10 +12,9 @@
     border-radius: 15px;
     padding-left: 15px;
     background-color: rgb(0, 154, 163, 0.5);
-    /*background-color: rgba(65, 65, 65, 0.9);*/
 }
 
-.actorsBoxWhite {
+.postersBoxWhite {
     background-color: #f7ead6;
 
 }
