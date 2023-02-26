@@ -1,11 +1,11 @@
 .myButton{
-    padding: 8px 12px;
+    padding: 8px 11px;
     background-color: #009ca5;
     color: #313131;
     font-weight: bold;
     border: none;
     border-radius: 5px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     overflow: hidden;
     transition: 0.5s;
     cursor: pointer;
