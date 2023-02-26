@@ -15,12 +15,15 @@ const MoviePage = () => {
     const [query] = useSearchParams();
 
     useEffect(() => {
-        dispatch(moviesActions.getMovieById({movieId: query.get('movieId')}))
-        dispatch(moviesActions.getMovieById({movieId: query.get('movieId'), option: '/credits'}))
-        dispatch(moviesActions.getMovieById({movieId: query.get('movieId'), option: '/images'}))
-        dispatch(moviesActions.getMovieById({movieId: query.get('movieId'), option: '/videos'}))
+        const movieId = query.get('movieId');
+        dispatch(moviesActions.getMovieById({movieId}))
+        dispatch(moviesActions.getMovieById({movieId, option: '/credits'}))
+        dispatch(moviesActions.getMovieById({movieId, option: '/images'}))
+        dispatch(moviesActions.getMovieById({movieId, option: '/videos'}))
         // console.log(query.get('movieId'));
     }, [dispatch, query]);
+
+
 
     return (
         <div className={css.moviePage}>

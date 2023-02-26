@@ -10,7 +10,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faQuestion} from '@fortawesome/free-solid-svg-icons'
 import ReactStars from "react-rating-stars-component/dist/react-stars";
 
-
 const MoviesCard = ({movie}) => {
 
     const dispatch = useDispatch();
@@ -53,7 +52,7 @@ const MoviesCard = ({movie}) => {
             <div className={css.stars}>
                 <ReactStars
                     size={18}
-                    value={movie.vote_average}
+                    value={movie?.vote_average}
                     count={10}
                     edit={false}
                     color={'gray'}
@@ -61,8 +60,8 @@ const MoviesCard = ({movie}) => {
                 />
             </div>
             {showPopup && <div className={css.overlay}>
-                <div><b>{movie.title}</b></div>
-                <div>{movie.overview}</div>
+                <div><b>{movie?.title}</b></div>
+                <div>{movie?.overview}</div>
             </div>}
         </div>
     );

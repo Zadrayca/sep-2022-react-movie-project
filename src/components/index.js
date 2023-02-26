@@ -17,3 +17,4 @@ export * from './Posters/Posters';
 export * from './PoserCard/PosterCard';
 export * from './VideoBox/VideoBox';
 export * from './UI/Loader/Loader';
+export * from './MovieText/MovieText';

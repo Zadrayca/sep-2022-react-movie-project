@@ -24,7 +24,6 @@ const SearchPage = () => {
     }, [dispatch, query]);
 
     // console.log(query.get('query'), query.get('page'), query.get('year'));
-    // console.log(loading);
 
     const {nextSearchPage} = useMyPage();
 

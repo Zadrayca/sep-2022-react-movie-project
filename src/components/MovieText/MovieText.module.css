@@ -1,0 +1,20 @@
+.infoBox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.textBox {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.countryBox {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex-wrap: wrap;
+}

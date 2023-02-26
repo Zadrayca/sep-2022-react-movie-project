@@ -6,15 +6,7 @@
     color: snow;
     padding-bottom: 15px;
 }
-.movieInfo h2 {
-    margin: 0;
-}
-
-.movieInfo h4 {
-    margin: 0;
-}
-
-.movieInfo h3 {
+.movieInfo h2, h4, h3{
     margin: 0;
 }
 
@@ -65,19 +57,6 @@
     width: 97%;
 }
 
-.textBox {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-
-.countryBox {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    flex-wrap: wrap;
-}
-
 .overviewBox {
     display: flex;
     flex-direction: column;
@@ -85,14 +64,6 @@
     gap: 5px;
     flex-wrap: wrap;
     font-size: 20px;
-    letter-spacing: 1px;
-}
-
-.infoBox {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 18px;
     letter-spacing: 1px;
 }
 

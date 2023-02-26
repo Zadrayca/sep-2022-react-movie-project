@@ -24,7 +24,6 @@ const MoviesPage = () => {
     }, [dispatch, query]);
 
     // console.log(query.get('genre'), query.get('page'));
-    // console.log(loading);
 
     const {nextPage} = useMyPage();
 

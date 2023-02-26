@@ -15,16 +15,17 @@ const HomePage = () => {
     const [query, setQuery] = useSearchParams();
 
     useEffect(() => {
-        dispatch(moviesActions.getAllMovies({
-            page: query.get('page'),
+        const page = query.get('page');
+        const { getAllMovies, getTopOrUp } = moviesActions;
+
+        dispatch(getAllMovies({
+            page,
             genre: query.get('genre')
         }))
-        dispatch(moviesActions.getTopOrUp({
-            page: query.get('page'),
+        dispatch(getTopOrUp({
+            page,
             path: query.get('path')
         }))
-        // console.log('HOME');
-
     }, [dispatch, query]);
 
     // console.log(query.get('page'), query.get('path'));
@@ -35,14 +36,13 @@ const HomePage = () => {
 
     const switcher = () => {
         if (upTopSwitch) {
-            setUpTopSwitch(false)
             setQuery({path: 'top_rated'})
 
         } else {
-            setUpTopSwitch(true)
             setQuery({path: 'upcoming'})
         }
-    }
+        setUpTopSwitch(prev => !prev);
+    };
 
     return (
         <div className={css.homePage}>
