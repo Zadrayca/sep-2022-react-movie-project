@@ -1,12 +1,14 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 
 import css from './MoviePage.module.css';
-import {MovieInfo} from "../../components";
+import {Loader, MovieInfo} from "../../components";
 import {moviesActions} from "../../redux";
 
 const MoviePage = () => {
+
+    const {loading} = useSelector(state => state.movies);
 
     const dispatch = useDispatch();
 
@@ -23,7 +25,7 @@ const MoviePage = () => {
     return (
         <div className={css.moviePage}>
             <h2>Фільм інфо</h2>
-            <MovieInfo/>
+           {loading ? <Loader/> :  <MovieInfo/>}
         </div>
     );
 };

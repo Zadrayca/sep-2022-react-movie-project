@@ -3,7 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
 import css from './UpcomingPage.module.css';
-import {MoviesBox, PagesButton, useMyPage} from "../../components";
+import {Loader, MoviesBox, PagesButton, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const UpcomingPage = () => {
@@ -29,7 +29,7 @@ const UpcomingPage = () => {
         <div className={css.upcomingPage}>
             <h2>Очікувані, сторінка : №{page}</h2>
             <PagesButton nextPage={nextUpcomingPage}/>
-            {loading ? <div>Loading........</div> : <MoviesBox/>}
+            {loading ? <Loader/> : <MoviesBox/>}
         </div>
     );
 };

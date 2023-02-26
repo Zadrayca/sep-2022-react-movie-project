@@ -3,7 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
 import css from './TopRatedPage.module.css';
-import {MoviesBox, PagesButton, useMyPage} from "../../components";
+import {Loader, MoviesBox, PagesButton, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const TopRatedPage = () => {
@@ -29,7 +29,7 @@ const TopRatedPage = () => {
         <div className={css.topRatedPage}>
             <h2>Найкращі, сторінка : №{page}</h2>
             <PagesButton nextPage={nextTopRatedPage}/>
-            {loading ? <div>Loading........</div> : <MoviesBox/>}
+            {loading ? <Loader/> : <MoviesBox/>}
         </div>
     );
 };

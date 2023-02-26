@@ -99,7 +99,7 @@ const MovieInfo = () => {
                         <div className={css.countryBox}>
                             <div><b>Актори : </b></div>
                             {movieCast && movieCast.cast.map(cas =>
-                                <div key={cas.name}>{cas.name}.</div>)}
+                                <div key={cas.order}>{cas.name}.</div>)}
                         </div>
                     </div>
 

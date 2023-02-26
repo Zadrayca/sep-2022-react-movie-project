@@ -31,9 +31,11 @@
 }
 
 .carPop {
+    display: flex;
     height: 380px;
-    width: 100%;
-
+    width: 99%;
+    align-items: center;
+    justify-content: center;
 }
 
 .topBox {

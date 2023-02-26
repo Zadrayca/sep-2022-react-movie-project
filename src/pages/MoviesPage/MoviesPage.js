@@ -3,7 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
 import css from './MoviesPage.module.css';
-import {MoviesBox, PagesButton, useMyPage} from "../../components";
+import {Loader, MoviesBox, PagesButton, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const MoviesPage = () => {
@@ -32,7 +32,7 @@ const MoviesPage = () => {
         <div className={css.moviesPage}>
             <h2>Усі фільми, сторінка : №{page}</h2>
             <PagesButton nextPage={nextPage}/>
-            {loading ? <div>Loading........</div> : <MoviesBox/>}
+            {loading ? <Loader/> : <MoviesBox/>}
         </div>
     );
 };

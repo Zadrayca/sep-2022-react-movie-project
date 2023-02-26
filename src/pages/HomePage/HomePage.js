@@ -3,7 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 import css from './HomePage.module.css';
-import {Carousel, MyButton, PagesButton, useMyPage} from "../../components";
+import {Carousel, Loader, MyButton, PagesButton, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const HomePage = () => {
@@ -54,7 +54,7 @@ const HomePage = () => {
                     : <PagesButton nextPage={nextTopRatedPage}/>
                 }
             </div>
-            <div className={css.carPop}>{loading ? <div>Loading........</div> : <Carousel movies={homePop}/>}</div>
+            <div className={css.carPop}>{loading ? <Loader/> : <Carousel movies={homePop}/>}</div>
 
             <div className={css.topBox}>
                 {upTopSwitch ? <h2>Очікувані, сторінка : №{page}</h2> : <h2>Найкращі, сторінка : №{page}</h2>}
@@ -72,7 +72,7 @@ const HomePage = () => {
                     <MyButton disabled={!upTopSwitch} onClick={switcher}>Найкращі</MyButton>
                 </div>
             </div>
-            <div className={css.carPop}>{loading ? <div>Loading........</div> : <Carousel movies={homeTopUp}/>}</div>
+            <div className={css.carPop}>{loading ? <Loader/> : <Carousel movies={homeTopUp}/>}</div>
         </div>
     );
 };

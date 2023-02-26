@@ -6,7 +6,6 @@ import {setupStore} from "./redux";
 
 import App from './App';
 import 'normalize.css';
-import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

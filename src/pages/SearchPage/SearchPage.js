@@ -3,7 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
 import css from './SearchPage.module.css';
-import {MoviesBox, PagesButton, Search, useMyPage} from "../../components";
+import {Loader, MoviesBox, PagesButton, Search, useMyPage} from "../../components";
 import {moviesActions} from "../../redux";
 
 const SearchPage = () => {
@@ -33,7 +33,7 @@ const SearchPage = () => {
             <h2>Пошук "{queryMovie}", Рік: {queryYear} Сторінка: №{page}</h2>
             <Search/>
             <PagesButton nextPage={nextSearchPage}/>
-            {loading ? <div>Loading........</div> : <MoviesBox/>}
+            {loading ? <Loader/> : <MoviesBox/>}
         </div>
     );
 };
