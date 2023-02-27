@@ -12,15 +12,11 @@ import {MovieText} from "../MovieText/MovieText";
 
 const MovieInfo = () => {
 
-    const {movieInfo, movieCast, movieImages, themeSwitch, movieVideo} = useSelector(state => state.movies);
+    const {movieInfo, themeSwitch} = useSelector(state => state.movies);
 
     const [showPopup, setShowPopup] = useState(false);
 
-    // console.log(movieId);
     // console.log(movieInfo);
-    // console.log(movieCast);
-    // console.log(movieImages);
-    // console.log(movieVideo);
 
     return (
         <div className={`${css.movieInfo} ${themeSwitch ? css.movieInfoWhite : ''}`}>
@@ -66,14 +62,14 @@ const MovieInfo = () => {
                     <div>{movieInfo.overview}</div>
                 </div>
 
-                {movieCast?.cast[0] && <h3>Актори :</h3>}
-                {movieCast?.cast[0] && <Actors/>}
+                {movieInfo?.credits.cast[0] && <h3>Актори :</h3>}
+                {movieInfo?.credits?.cast[0] && <Actors/>}
 
-                {movieVideo && <h3>Трейлери : </h3>}
-                {movieVideo && <VideoBox/>}
+                {movieInfo.videos && <h3>Трейлери : </h3>}
+                {movieInfo.videos && <VideoBox/>}
 
-                {movieImages?.posters[0] && <h3>Постери :</h3>}
-                {movieImages?.posters[0] && <Posters/>}
+                {movieInfo?.images.posters[0] && <h3>Постери :</h3>}
+                {movieInfo?.images.posters[0] && <Posters/>}
 
             </div>}
         </div>

@@ -16,7 +16,7 @@ const urls = {
         topUP: (page, path) => `${movie}/${path}?page=${page}&language=uk`
     },
     oneMovie: {
-        movie: (movieId, option) => `${movie}/${movieId}${option}?language=uk`
+        movie: (movieId) => `${movie}/${movieId}?language=uk&append_to_response=videos,images,credits`
     },
     searchByQuery: {
         search,

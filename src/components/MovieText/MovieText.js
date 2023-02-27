@@ -4,7 +4,7 @@ import css from "./MovieText.module.css";
 
 const MovieText = () => {
 
-    const {movieInfo, movieCast} = useSelector(state => state.movies);
+    const {movieInfo} = useSelector(state => state.movies);
 
     return (
         <div className={css.infoBox}>
@@ -44,12 +44,12 @@ const MovieText = () => {
             </div>
             <div className={css.textBox}>
                 <div><b>Режиссер:</b></div>
-                {movieCast && movieCast.crew.map(cre => cre.job === 'Director' ?
+                {movieInfo?.credits && movieInfo?.credits.crew.map(cre => cre.job === 'Director' ?
                     <div key={cre.name}>{cre.name}</div> : '')}
             </div>
             <div className={css.countryBox}>
                 <div><b>Актори : </b></div>
-                {movieCast && movieCast.cast.map(cas =>
+                {movieInfo?.credits && movieInfo?.credits.cast.map(cas =>
                     <div key={cas.order}>{cas.name}.</div>)}
             </div>
         </div>

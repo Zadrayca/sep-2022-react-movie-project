@@ -17,13 +17,8 @@ const MoviePage = () => {
     useEffect(() => {
         const movieId = query.get('movieId');
         dispatch(moviesActions.getMovieById({movieId}))
-        dispatch(moviesActions.getMovieById({movieId, option: '/credits'}))
-        dispatch(moviesActions.getMovieById({movieId, option: '/images'}))
-        dispatch(moviesActions.getMovieById({movieId, option: '/videos'}))
-        // console.log(query.get('movieId'));
+        dispatch(moviesActions.setMovieId(movieId))
     }, [dispatch, query]);
-
-
 
     return (
         <div className={css.moviePage}>

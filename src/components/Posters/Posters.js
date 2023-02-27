@@ -5,11 +5,12 @@ import {PosterCard} from "../PoserCard/PosterCard";
 
 const Posters = () => {
 
-    const {movieImages, themeSwitch} = useSelector(state => state.movies);
+    const {movieInfo, themeSwitch} = useSelector(state => state.movies);
 
     return (
         <div className={`${css.postersBox} ${themeSwitch ? css.postersBoxWhite : ''}`}>
-            {movieImages && movieImages.posters.map(poster => <PosterCard key={poster.file_path} poster={poster}/>)}
+            {movieInfo?.images?.posters[0] && movieInfo?.images?.posters.map(poster => <PosterCard
+                key={poster.file_path} poster={poster}/>)}
         </div>
     );
 };

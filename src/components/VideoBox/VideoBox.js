@@ -5,11 +5,11 @@ import css from './VideoBox.module.css';
 
 const VideoBox = () => {
 
-    const {movieVideo} = useSelector(state => state.movies);
+    const {movieInfo} = useSelector(state => state.movies);
 
     return (
         <div className={css.videoBox}>
-            {movieVideo && movieVideo.map(video =>
+            {movieInfo?.videos && movieInfo.videos.results.map(video =>
                 <div key={video.id} className={css.video}>
                     <ReactPlayer
                         controls={true}

@@ -11,9 +11,6 @@ const initialState = {
     genreChoice: {id: '28', name: 'Action'},
     movieId: '',
     movieInfo: null,
-    movieCast: null,
-    movieImages: null,
-    movieVideo: '',
     queryMovie: '',
     queryYear: '',
     themeSwitch: false,
@@ -47,9 +44,9 @@ const getTopOrUp = createAsyncThunk(
 
 const getMovieById = createAsyncThunk(
     'moviesSlice/getMovieById',
-    async ({movieId, option=''}, thunkAPI) => {
+    async ({movieId}, thunkAPI) => {
         try {
-            const {data} = await tmdbService.getMovieByIdSrv(movieId, option);
+            const {data} = await tmdbService.getMovieByIdSrv(movieId);
             return data
         } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
@@ -101,9 +98,6 @@ const moviesSlice = createSlice({
         setYear:((state, action) =>{
             state.queryYear = action.payload
         }),
-        setVideo:((state, action) =>{
-            state.movieVideo = action.payload
-        }),
         setTheme:((state, action) =>{
             state.themeSwitch = action.payload
         })
@@ -125,15 +119,7 @@ const moviesSlice = createSlice({
                 state.loading = false;
             })
             .addCase(getMovieById.fulfilled, (state, action) => {
-                if (action.payload?.title){
-                    state.movieInfo = action.payload;
-                } else if (action.payload?.cast) {
-                    state.movieCast = action.payload
-                } else if (action.payload?.backdrops || action.payload?.posters){
-                    state.movieImages = action.payload
-                } else if (action.payload?.results[0]?.site === 'YouTube'){
-                    state.movieVideo = action.payload.results
-                }
+                state.movieInfo = action.payload;
                 state.loading = false;
             })
             .addCase(getSearchMovieByQuery.fulfilled, (state, action) => {
@@ -162,7 +148,7 @@ const moviesSlice = createSlice({
 
 const {
     reducer: moviesReducer,
-    actions: {setPage, setGenreChoice, setMovieId, setQuery, setVideo, setTheme, setYear}
+    actions: {setPage, setGenreChoice, setMovieId, setQuery, setTheme, setYear}
 } = moviesSlice;
 
 const moviesActions = {
@@ -176,7 +162,6 @@ const moviesActions = {
     getSearchMovieByQuery,
     setQuery,
     setYear,
-    setVideo,
     setTheme
 }
 
