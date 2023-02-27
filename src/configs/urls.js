@@ -20,7 +20,7 @@ const urls = {
     },
     searchByQuery: {
         search,
-        byQuery: (page, query, year) => `${search}?query=${query}&page=${page}&year=${year}&language=uk`
+        byQuery: (page, query, year) => `${search}?query=${query}&page=${page}&primary_release_year=${year}&language=uk`
     },
     allGenre: {
         genre
