@@ -16,7 +16,6 @@ const MoviesCard = ({movie}) => {
 
     const setMovieId = () => {
         dispatch(moviesActions.setMovieId(movie.id))
-        dispatch(moviesActions.setVideo(''))
     };
 
     const [showPopup, setShowPopup] = useState(false);
