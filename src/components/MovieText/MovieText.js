@@ -28,7 +28,7 @@ const MovieText = () => {
             <div className={css.countryBox}>
                 <div><b>Кінокомпанія : </b></div>
                 {movieInfo?.production_companies[0] && movieInfo.production_companies.map(company =>
-                    <div key={company.name}>{company.name}.</div>)}
+                    <div key={company.id}>{company.name}.</div>)}
             </div>
             <div className={css.textBox}>
                 <div><b>Касові збори :</b></div>
